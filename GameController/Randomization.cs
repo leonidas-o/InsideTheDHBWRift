@@ -30,12 +30,6 @@ public class Randomization : MonoBehaviour {
 		int i;
 
 		for(i = 0; i < paperTrashObjects.Length; i++) {
-			//trashObject = "MuellObjekt" + i;
-			//Debug.Log(trashObject);
-			//trash = GameObject.Find (trashObject);
-
-
-
 
 			do {
 				// calculate a random value for x and z axis, y axis stays 0
@@ -48,10 +42,10 @@ public class Randomization : MonoBehaviour {
 			} while (position.x > 9999 && position.y > 9999);
 
 			position.y = 2.5f;
-			Debug.Log(position);
 			paperTrashObjects[i].transform.position = position;
 
 		}
+
 
 
 		// randomized faucet water turning on
@@ -64,12 +58,20 @@ public class Randomization : MonoBehaviour {
 				faucetWaterObjects[j].particleSystem.Play();
 
 
+				faucetWaterObjects[j].transform.parent.Find("Wasserhahn_Knauf").GetComponent<Animator>().SetBool ("Open", true);
+
+
 				faucetWaterObjects[j].audio.clip = burblingOfWater;
 				faucetWaterObjects[j].audio.Play();
 
 
 			} else {
 				faucetWaterObjects[j].particleSystem.Stop();
+
+				faucetWaterObjects[j].transform.parent.Find("Wasserhahn_Knauf").GetComponent<Animator>().SetBool ("Open", false);
+
+				faucetWaterObjects[j].audio.clip = burblingOfWater;
+				faucetWaterObjects[j].audio.Stop();
 			}
 		}
 

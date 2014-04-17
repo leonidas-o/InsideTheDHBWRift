@@ -3,15 +3,16 @@ using System.Collections;
 
 public class Properties : MonoBehaviour {
 	
-	private static bool _hasObject = false;
-	private static GameObject _carriedObject = null;
-	private static string _currentPossibleAction = "";
-	private static Vector3 _currentTrashCanPos;
-	private static Transform _currentFaucetWater;
+	private bool _hasObject = false;
+	private GameObject _carriedObject = null;
+	private string _currentPossibleAction = "";
+	private Vector3 _currentTrashCanPos;
+	private Transform _currentFaucetWater;
 
-	private static GameObject _currentWindow;
+	private GameObject _currentWindow;
+	private GameObject _currentFaucet;
 
-	private static int _score = 0;
+	private int _score = 0;
 
 
 	public enum currentPossibleActionEnum {
@@ -49,6 +50,12 @@ public class Properties : MonoBehaviour {
 		get { return _currentFaucetWater; }
 		set { _currentFaucetWater = value; }
 	}
+
+	public GameObject currentFaucet {
+		get { return _currentFaucet; }
+		set { _currentFaucet = value; }
+	}
+
 
 	public GameObject currentWindow {
 		get { return _currentWindow; }

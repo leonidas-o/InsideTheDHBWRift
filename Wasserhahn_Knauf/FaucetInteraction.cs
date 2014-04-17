@@ -6,10 +6,10 @@ public class FaucetInteraction : MonoBehaviour {
 
 	private GameObject player;
 	private Properties playerProperties;
-//	private Transform water;
-	private bool waterFlowing;
+//	private bool waterFlowing;
+	private Transform currentFaucetWater;
+	private GameObject currentFaucetKnob;
 
-	private GameObject faucetWaterObject;
 
 
 
@@ -18,19 +18,26 @@ public class FaucetInteraction : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerProperties = player.GetComponent<Properties> ();
 
-		//faucetWaterObject =  GameObject.FindGameObjectWithTag("Water");
-
 	}
 
-	void OnTriggerStay(Collider other) {
+	void OnTriggerEnter(Collider other) {
 
 		// if player enters collider of trash can, and has a object.
 		if (other.gameObject == player && playerProperties.hasObject == false) {
 			// set current action to 
 			playerProperties.currentPossibleAction = Properties.currentPossibleActionEnum.InteractWithFaucet.ToString ();
-			playerProperties.currentFaucetWater = gameObject.transform.parent.Find ("Wasserhahn_Wasser");
-			waterFlowing = playerProperties.currentFaucetWater.particleSystem.isPlaying;
+
+			playerProperties.currentFaucet = gameObject;
+//			waterFlowing = playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").particleSystem.isPlaying;
+
 		}
+	}
+
+	void OnTriggerStay (Collider other) {
+		// if player triggers collider renew playerProperties.currentPossibleAction to avoid problems with entering and exiting triggerzone in the same time
+		playerProperties.currentPossibleAction = Properties.currentPossibleActionEnum.InteractWithFaucet.ToString ();
+
+
 	}
 	
 	void OnTriggerExit(Collider other) {
@@ -41,32 +48,25 @@ public class FaucetInteraction : MonoBehaviour {
 
 		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithFaucet.ToString () && Input.GetMouseButtonDown(0)) {
 
-				if (waterFlowing) {
-						//rotate the knob
 
-						// stop the water
-						playerProperties.currentFaucetWater.particleSystem.Stop ();
-						
-						playerProperties.currentFaucetWater.audio.Stop();
+			if (playerProperties.currentFaucet.GetComponent<Animator>().GetBool ("Open")) {
+				// stop the water
+				playerProperties.currentFaucet.GetComponent<Animator>().SetBool ("Open", false);
+				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").particleSystem.Stop ();
+				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").audio.Stop();
+//				waterFlowing = false;
 
-						Debug.Log(playerProperties.currentFaucetWater);
-						waterFlowing = false;
+				playerProperties.score += 10;
+			
+			} else {
 
-						
+				playerProperties.currentFaucet.GetComponent<Animator>().SetBool ("Open", true);
+				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").particleSystem.Play ();
+				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").audio.Play();
+//				waterFlowing = true;
 
-						playerProperties.score += 10;
-
-
-				} else {
-						playerProperties.currentFaucetWater.particleSystem.Play ();
-						
-						playerProperties.currentFaucetWater.audio.Play();
-
-						Debug.Log(playerProperties.currentFaucetWater);
-						waterFlowing = true;
-						playerProperties.score -= 10;
-				}
-
+				playerProperties.score -= 10;
+			}
 		}
 	}
 }	
