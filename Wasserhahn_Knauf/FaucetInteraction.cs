@@ -47,11 +47,13 @@ public class FaucetInteraction : MonoBehaviour {
 						// stop the water
 						playerProperties.currentFaucetWater.particleSystem.Stop ();
 						
-
 						playerProperties.currentFaucetWater.audio.Stop();
 
 						Debug.Log(playerProperties.currentFaucetWater);
 						waterFlowing = false;
+
+						
+
 						playerProperties.score += 10;
 
 
