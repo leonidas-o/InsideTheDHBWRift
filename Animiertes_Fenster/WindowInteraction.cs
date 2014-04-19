@@ -37,31 +37,30 @@ public class WindowInteraction : MonoBehaviour {
 	}
 
 	public void InteractWithWindow() {
-		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithWindow.ToString () && Input.GetMouseButtonDown (0) && !playerProperties.currentWindow.audio.isPlaying) {
-			if (playerProperties.currentWindow.GetComponent<Animator>().GetBool ("Open")) {
-				
-				Debug.Log("Trigger and close it");
-				
-				playerProperties.currentWindow.GetComponent<Animator>().SetBool ("Open", false);
-				
-				// play window sound for closing
-				playerProperties.currentWindow.audio.clip = windowClose;
-				playerProperties.currentWindow.audio.Play ();
-				
-				// add to score
-				playerProperties.score += 10;
-			} else {
-				playerProperties.currentWindow.GetComponent<Animator>().SetBool ("Open", true);
-				
-				Debug.Log("Trigger and open it");
-				
-				// play window sound for opening
-				playerProperties.currentWindow.audio.clip = windowOpen;
-				playerProperties.currentWindow.audio.Play ();
-				
-				// add to score
-				playerProperties.score -= 10;
-			}
+
+		if (playerProperties.currentWindow.GetComponent<Animator>().GetBool ("Open")) {
+			
+			Debug.Log("Trigger and close it");
+			
+			playerProperties.currentWindow.GetComponent<Animator>().SetBool ("Open", false);
+			
+			// play window sound for closing
+			playerProperties.currentWindow.audio.clip = windowClose;
+			playerProperties.currentWindow.audio.Play ();
+			
+			// add to score
+			playerProperties.score += 10;
+		} else {
+			playerProperties.currentWindow.GetComponent<Animator>().SetBool ("Open", true);
+			
+			Debug.Log("Trigger and open it");
+			
+			// play window sound for opening
+			playerProperties.currentWindow.audio.clip = windowOpen;
+			playerProperties.currentWindow.audio.Play ();
+			
+			// add to score
+			playerProperties.score -= 10;
 		}
 	}
 

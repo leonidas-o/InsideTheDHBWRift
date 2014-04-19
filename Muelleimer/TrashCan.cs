@@ -8,12 +8,12 @@ public class TrashCan : MonoBehaviour {
 	private Properties playerProperties;
 	private Transform trashPositioner;
 
+
 	void Awake() {
 		// Setting up the references.
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerProperties = player.GetComponent<Properties> ();
 		trashPositioner = transform.Find ("MuellPlatzierer");
-		//GameObject.FindGameObjectWithTag("TrashPositioner");
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -21,11 +21,8 @@ public class TrashCan : MonoBehaviour {
 		if (other.gameObject == player && playerProperties.hasObject == true) {
 			// set current action to 
 			playerProperties.currentPossibleAction = Properties.currentPossibleActionEnum.ThrowToTrashCan.ToString();
-			//playerProperties.currentTrashCanPos = gameObject.transform.position;
 			playerProperties.currentTrashCanPos = trashPositioner.transform.position;
 
-
-			Debug.Log ("throw to trash state at position " + playerProperties.currentTrashCanPos);
 		}
 	}
 

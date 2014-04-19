@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour {
 		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithWindow.ToString () && Input.GetMouseButtonDown (0) && !playerProperties.currentWindow.audio.isPlaying) {
 			playerProperties.currentWindow.GetComponent<WindowInteraction>().InteractWithWindow();
 		}
+
 		// if interacting with faucets
 		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithFaucet.ToString () && Input.GetMouseButtonDown (0) && !playerProperties.currentFaucet.audio.isPlaying) {
 			playerProperties.currentFaucet.GetComponent<FaucetInteraction>().InteractWithFaucet();
