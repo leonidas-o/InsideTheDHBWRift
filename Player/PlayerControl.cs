@@ -38,6 +38,11 @@ public class PlayerControl : MonoBehaviour {
 		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithFaucet.ToString () && Input.GetMouseButtonDown (0) && !playerProperties.currentFaucet.audio.isPlaying) {
 			playerProperties.currentFaucet.GetComponent<FaucetInteraction>().InteractWithFaucet();
 		}
+
+		// if interacting with lights
+		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithLight.ToString () && Input.GetMouseButtonDown (0) && !playerProperties.currentLight.audio.isPlaying) {
+			playerProperties.currentLight.GetComponent<LightSwitch>().SwitchLights();
+		}
 	}
 	
 	

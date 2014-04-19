@@ -76,6 +76,11 @@ public class FaucetInteraction : MonoBehaviour {
 			
 			playerProperties.score -= 10;
 		}
+
+
+
+
+
 	}
 
 }	

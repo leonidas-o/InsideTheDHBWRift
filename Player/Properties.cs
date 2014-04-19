@@ -11,6 +11,8 @@ public class Properties : MonoBehaviour {
 	private GameObject _currentWindow;
 	private GameObject _currentFaucet;
 
+	private GameObject _currentLight;
+
 	private int _score = 0;
 
 
@@ -18,6 +20,7 @@ public class Properties : MonoBehaviour {
 		ThrowToTrashCan,
 		InteractWithFaucet,
 		InteractWithWindow,
+		InteractWithLight,
 	}
 		
 
@@ -54,6 +57,12 @@ public class Properties : MonoBehaviour {
 		get { return _currentWindow; }
 		set { _currentWindow = value; }
 	}
+
+	public GameObject currentLight {
+		get { return _currentLight; }
+		set { _currentLight = value; }
+	}
+
 	
 
 	public int score {
