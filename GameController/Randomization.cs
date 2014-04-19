@@ -55,7 +55,7 @@ public class Randomization : MonoBehaviour {
 
 		for(j = 0; j < faucetWaterObjects.Length; j++) {
 
-			if(Random.Range(0, 10) >= 4 ) {
+			if(Random.Range(0, 10) >= 5 ) {
 				faucetWaterObjects[j].particleSystem.Play();
 
 
