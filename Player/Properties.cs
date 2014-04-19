@@ -7,7 +7,6 @@ public class Properties : MonoBehaviour {
 	private GameObject _carriedObject = null;
 	private string _currentPossibleAction = "";
 	private Vector3 _currentTrashCanPos;
-	private Transform _currentFaucetWater;
 
 	private GameObject _currentWindow;
 	private GameObject _currentFaucet;
@@ -44,11 +43,6 @@ public class Properties : MonoBehaviour {
 	public Vector3 currentTrashCanPos {
 		get { return _currentTrashCanPos; }
 		set { _currentTrashCanPos = value; }
-	}
-
-	public Transform currentFaucetWater {
-		get { return _currentFaucetWater; }
-		set { _currentFaucetWater = value; }
 	}
 
 	public GameObject currentFaucet {

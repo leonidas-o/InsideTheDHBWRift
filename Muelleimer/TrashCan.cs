@@ -30,7 +30,9 @@ public class TrashCan : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other) {
-		playerProperties.currentPossibleAction = "";
+		if (other.gameObject == player) {
+			playerProperties.currentPossibleAction = "";
+		}
 	}
 
 }

@@ -7,8 +7,8 @@ public class FaucetInteraction : MonoBehaviour {
 	private GameObject player;
 	private Properties playerProperties;
 //	private bool waterFlowing;
-	private Transform currentFaucetWater;
-	private GameObject currentFaucetKnob;
+//	private Transform currentFaucetWater;
+//	private GameObject currentFaucetKnob;
 
 
 
@@ -34,14 +34,19 @@ public class FaucetInteraction : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider other) {
-		// if player triggers collider renew playerProperties.currentPossibleAction to avoid problems with entering and exiting triggerzone in the same time
-		playerProperties.currentPossibleAction = Properties.currentPossibleActionEnum.InteractWithFaucet.ToString ();
 
+		if (other.gameObject == player) {
+			// if player triggers collider renew playerProperties.currentPossibleAction to avoid problems with entering and exiting triggerzone in the same time
+			playerProperties.currentPossibleAction = Properties.currentPossibleActionEnum.InteractWithFaucet.ToString ();
+		}
 
 	}
 	
 	void OnTriggerExit(Collider other) {
-		playerProperties.currentPossibleAction = "";
+		if (other.gameObject == player) {
+			playerProperties.currentPossibleAction = "";
+		}
+
 	}
 	
 	void Update() {

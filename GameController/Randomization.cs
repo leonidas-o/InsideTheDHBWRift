@@ -18,6 +18,7 @@ public class Randomization : MonoBehaviour {
 
 	private GameObject[] paperTrashObjects;
 	private GameObject[] faucetWaterObjects;
+	private GameObject[] animatedWindowObjects;
 
 	public AudioClip burblingOfWater;
 
@@ -75,6 +76,18 @@ public class Randomization : MonoBehaviour {
 			}
 		}
 
+
+
+		// randomized window opener
+		animatedWindowObjects = GameObject.FindGameObjectsWithTag("AnimatedWindow");
+		int h;
+
+		for (h = 0; h < animatedWindowObjects.Length; h++) {
+			if(Random.Range(0, 10) >= 4 )
+				animatedWindowObjects[h].GetComponent<Animator>().SetBool("Open", true);
+			else
+				animatedWindowObjects[h].GetComponent<Animator>().SetBool("Open", false);
+			
+		}
 	}
-	
 }
