@@ -10,7 +10,8 @@ public class FaucetInteraction : MonoBehaviour {
 //	private Transform currentFaucetWater;
 //	private GameObject currentFaucetKnob;
 
-
+	public AudioClip faucetOpen;
+	public AudioClip faucetClose;
 
 
 	void Awake() {
@@ -41,37 +42,48 @@ public class FaucetInteraction : MonoBehaviour {
 		}
 
 	}
-	
+
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject == player) {
 			playerProperties.currentPossibleAction = "";
 		}
 
 	}
-	
-	void Update() {
-
-		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithFaucet.ToString () && Input.GetMouseButtonDown(0)) {
 
 
+	public void InteractWithFaucet() {
+
+		if (playerProperties.currentPossibleAction.ToString () == Properties.currentPossibleActionEnum.InteractWithFaucet.ToString () && Input.GetMouseButtonDown(0) ) {
+			
+			
+			
 			if (playerProperties.currentFaucet.GetComponent<Animator>().GetBool ("Open")) {
+				
+				Debug.Log("Trigger and close it");
+				
 				// stop the water
 				playerProperties.currentFaucet.GetComponent<Animator>().SetBool ("Open", false);
 				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").particleSystem.Stop ();
 				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").audio.Stop();
-//				waterFlowing = false;
-
+				//				waterFlowing = false;
+				
 				playerProperties.score += 10;
-			
+				
 			} else {
-
+				
+				Debug.Log("Trigger and open it");
+				
 				playerProperties.currentFaucet.GetComponent<Animator>().SetBool ("Open", true);
 				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").particleSystem.Play ();
 				playerProperties.currentFaucet.transform.parent.Find("Wasserhahn_Wasser").audio.Play();
-//				waterFlowing = true;
-
+				//				waterFlowing = true;
+				
 				playerProperties.score -= 10;
 			}
 		}
+
 	}
+
+
+
 }	

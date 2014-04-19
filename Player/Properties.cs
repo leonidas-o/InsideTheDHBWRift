@@ -49,20 +49,20 @@ public class Properties : MonoBehaviour {
 		get { return _currentFaucet; }
 		set { _currentFaucet = value; }
 	}
-
-
+	
 	public GameObject currentWindow {
 		get { return _currentWindow; }
 		set { _currentWindow = value; }
 	}
-
-
-
+	
 
 	public int score {
 		get { return _score; }
 		set { _score = value; }
 	}
+
+
+
 
 
 }
